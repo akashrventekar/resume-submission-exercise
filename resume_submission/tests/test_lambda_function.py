@@ -1,6 +1,7 @@
 import pytest
-from resume_submission.lambda_function import return_output, return_split, convert_lol_final_result, \
-    create_final_output, create_max_min_list, create_relationship_dict
+from resume_submission.lambda_function import return_output, \
+    create_final_output, create_max_min_list, create_relationship_dict, convert_lol_final_result_string, \
+    convert_string_to_list
 
 '''
 Few ways that would help solve problem:
@@ -195,9 +196,9 @@ B<='''
         (
                 [[' ', 'A', 'B', 'C'], ['A', "=", ">", ">"], ['B', "<", "=", ">"], ['C', "<", "<", "="]],
                 ''' ABC
-                A=>>
-                B<=>
-                C<<='''
+A=>>
+B<=>
+C<<='''
         ),
         # (
         #         [1, 2, 3, 4],
@@ -229,7 +230,7 @@ B<='''
     ],
 )
 def test_convert_lol_final_result(input, expected_result):
-    assert convert_lol_final_result(lol=input) == expected_result
+    assert convert_lol_final_result_string(lol=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -247,4 +248,4 @@ D-<--''',
     ],
 )
 def test_return_output(input, expected_result):
-    assert return_split(input=input) == expected_result
+    assert convert_string_to_list(input=input) == expected_result

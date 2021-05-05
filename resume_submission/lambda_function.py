@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 
 def lambda_handler(event, context):
     answer = ""
@@ -22,7 +24,7 @@ def lambda_handler(event, context):
     if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
         answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
     if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
-        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
+        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Science - Computer Science | Currently pursuing MBA"
     if str(event['queryStringParameters'][
                'd']) == "Please provide a URL where we can download your resume and cover letter.":
         answer = "TBD"
@@ -38,7 +40,7 @@ def lambda_handler(event, context):
     }
 
 
-def convert_lol_final_result(lol):
+def convert_lol_final_result_string(lol):
     final_output_string = ""
     for i in range(len(lol)):
         final_output_string += "".join(lol[i])
@@ -71,9 +73,6 @@ def create_final_output(input_list):
     return (sorted(full_list))
 
 
-from collections import defaultdict
-
-
 def create_max_min_list(relationship_dict):
     final_max_min_list = []
 
@@ -104,7 +103,7 @@ def create_max_min_list(relationship_dict):
 
 
 def return_output(input):
-    input_variables = return_split(input=input)
+    input_variables = convert_string_to_list(input=input)
 
     relationship_dict = create_relationship_dict(input_variables)
 
@@ -112,10 +111,10 @@ def return_output(input):
 
     list_of_lists_answer = create_final_output(input_list=max_min_list)
 
-    return convert_lol_final_result(lol=list_of_lists_answer)
+    return convert_lol_final_result_string(lol=list_of_lists_answer)
 
 
-def return_split(input):
+def convert_string_to_list(input):
     print(input.split(":")[1])
     input_variables = input.split(":")[1].splitlines()
     return input_variables[1:]
@@ -124,7 +123,6 @@ def return_split(input):
 def create_relationship_dict(input_variables):
     relationship_dict = defaultdict()
     for i in range(1, len(input_variables)):
-        print(input_variables[i])
         if '>' in input_variables[i]:
             index = input_variables[i].index('>')
             relationship_dict[i] = index
