@@ -4,7 +4,7 @@ def lambda_handler(event, context):
     print(event['queryStringParameters']['d'])
     if str(event['queryStringParameters'][
                'd']) == "Please provide a URL where we can download the source code of your resume submission web service.":
-        answer = "https://github.com/in/akashrventekar"
+        answer = "https://github.com/akashrventekar/resume-submission-exercise"
     if str(event['queryStringParameters']['d']) == "What is your full name?":
         answer = "Akash Rajendra Ventekar"
     if str(event['queryStringParameters']['d']) == "Please return OK so that I know your service works.":
