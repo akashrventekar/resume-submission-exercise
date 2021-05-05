@@ -1,41 +1,41 @@
-import json
 
 def lambda_handler(event, context):
-
     answer = ""
     print(event['queryStringParameters']['d'])
-    if str(event['queryStringParameters']['d']) == "Please provide a URL where we can download the source code of your resume submission web service.":
-      answer = "https://github.com/in/akashrventekar"
+    if str(event['queryStringParameters'][
+               'd']) == "Please provide a URL where we can download the source code of your resume submission web service.":
+        answer = "https://github.com/in/akashrventekar"
     if str(event['queryStringParameters']['d']) == "What is your full name?":
-      answer = "Akash Rajendra Ventekar"
+        answer = "Akash Rajendra Ventekar"
     if str(event['queryStringParameters']['d']) == "Please return OK so that I know your service works.":
-      answer = "OK"
+        answer = "OK"
     if str(event['queryStringParameters']['d']) == "What is your email address?":
-      answer = "akashrventekar@gmail.com"
+        answer = "akashrventekar@gmail.com"
     if str(event['queryStringParameters']['d']) == "Please provide a phone number we can use to reach you.":
-      answer = "(256) 468-9279"
+        answer = "(256) 468-9279"
     if str(event['queryStringParameters']['d']) == "Which position are you applying for?":
-      answer = "Senior Software Engineer, Exchange"
+        answer = "Senior Software Engineer, Exchange"
     if str(event['queryStringParameters']['d']) == "How many years of software development experience do you have?":
-      answer = "6+"
+        answer = "6+"
     if str(event['queryStringParameters']['d']) == "How did you hear about this position?":
-      answer = "LinkedIn"
+        answer = "LinkedIn"
     if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
-      answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
+        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
     if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
-      answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
-    if str(event['queryStringParameters']['d']) == "Please provide a URL where we can download your resume and cover letter.":
+        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
+    if str(event['queryStringParameters'][
+               'd']) == "Please provide a URL where we can download your resume and cover letter.":
         answer = "TBD"
     if str(event['queryStringParameters']['d']) == "Can you provide proof of eligibility to work in the US?":
         answer = "Yes"
     if "Please solve this puzzle" in str(event['queryStringParameters']['d']):
         answer = return_output(input=str(event['queryStringParameters']['d']))
     return {
-"isBase64Encoded": False,
-"statusCode": 200,
-"headers": { "Content-Type": "text/plain", },
-"body": answer
-}
+        "isBase64Encoded": False,
+        "statusCode": 200,
+        "headers": {"Content-Type": "text/plain", },
+        "body": answer
+    }
 
 
 def convert_lol_final_result(lol):
@@ -47,8 +47,8 @@ def convert_lol_final_result(lol):
 
     return final_output_string
 
-def create_final_output(input_list):
 
+def create_final_output(input_list):
     full_list = []
     my_list = [" "]
     char = "A"
@@ -68,7 +68,8 @@ def create_final_output(input_list):
                 elements_list[input_list[j]] = "<"
         full_list.append(elements_list[:])
         elements_list.clear()
-    return(sorted(full_list))
+    return (sorted(full_list))
+
 
 from collections import defaultdict
 
@@ -84,11 +85,11 @@ def create_max_min_list(relationship_dict):
         elif key in final_max_min_list and value not in final_max_min_list:
             index_key = final_max_min_list.index(key)
             final_max_min_list = final_max_min_list[:index_key + 1] + [value] + final_max_min_list[
-                                                                                                 index_key + 1:]
+                                                                                index_key + 1:]
         elif value in final_max_min_list and key not in final_max_min_list:
             index_value = final_max_min_list.index(value)
             final_max_min_list = final_max_min_list[:index_value] + [key] + final_max_min_list[
-                                                                                                 index_value:]
+                                                                            index_value:]
         elif key in final_max_min_list and value in final_max_min_list:
             continue
         else:
@@ -102,10 +103,6 @@ def create_max_min_list(relationship_dict):
     return final_max_min_list
 
 
-
-
-
-
 def return_output(input):
     input_variables = return_split(input=input)
 
@@ -117,10 +114,12 @@ def return_output(input):
 
     return convert_lol_final_result(lol=list_of_lists_answer)
 
+
 def return_split(input):
     print(input.split(":")[1])
     input_variables = input.split(":")[1].splitlines()
     return input_variables[1:]
+
 
 def create_relationship_dict(input_variables):
     relationship_dict = defaultdict()

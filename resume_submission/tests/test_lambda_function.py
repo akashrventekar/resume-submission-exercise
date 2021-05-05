@@ -1,5 +1,6 @@
 import pytest
-from resume_submission.lambda_function import return_output,return_split,convert_lol_final_result,create_final_output,create_max_min_list,create_relationship_dict
+from resume_submission.lambda_function import return_output, return_split, convert_lol_final_result, \
+    create_final_output, create_max_min_list, create_relationship_dict
 
 '''
 Few ways that would help solve problem:
@@ -142,7 +143,8 @@ def test_create_relationship_dict(input, expected_result):
         ),
         (
                 [1, 2, 3, 4],
-                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", ">", ">"], ['B', "<", "=", ">", ">"], ['C', "<", "<", "=", ">"], ['D', "<", "<", "<", "="]]
+                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", ">", ">"], ['B', "<", "=", ">", ">"],
+                 ['C', "<", "<", "=", ">"], ['D', "<", "<", "<", "="]]
         ),
         (
                 [4, 3, 2, 1],
@@ -161,16 +163,19 @@ def test_create_relationship_dict(input, expected_result):
         ),
         (
                 [1, 4, 2, 3],
-                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", ">", ">"], ['B', "<", "=", ">", "<"], ['C', "<", "<", "=", "<"], ['D', "<", ">", ">", "="]]
+                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", ">", ">"], ['B', "<", "=", ">", "<"],
+                 ['C', "<", "<", "=", "<"], ['D', "<", ">", ">", "="]]
         ),
         (
                 [3, 1, 4, 2],
-                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", "<", ">"], ['B', "<", "=", "<", "<"], ['C', ">", ">", "=", ">"], ['D', "<", ">", "<", "="]]
+                [[' ', 'A', 'B', 'C', 'D'], ['A', "=", ">", "<", ">"], ['B', "<", "=", "<", "<"],
+                 ['C', ">", ">", "=", ">"], ['D', "<", ">", "<", "="]]
         ),
     ],
 )
 def test_create_final_output(input, expected_result):
     assert create_final_output(input_list=input) == expected_result
+
 
 @pytest.mark.parametrize(
     "input, expected_result",
@@ -189,10 +194,10 @@ B<='''
         ),
         (
                 [[' ', 'A', 'B', 'C'], ['A', "=", ">", ">"], ['B', "<", "=", ">"], ['C', "<", "<", "="]],
-''' ABC
-A=>>
-B<=>
-C<<='''
+                ''' ABC
+                A=>>
+                B<=>
+                C<<='''
         ),
         # (
         #         [1, 2, 3, 4],
@@ -225,6 +230,7 @@ C<<='''
 )
 def test_convert_lol_final_result(input, expected_result):
     assert convert_lol_final_result(lol=input) == expected_result
+
 
 @pytest.mark.parametrize(
     "input, expected_result",
