@@ -1,7 +1,7 @@
 import pytest
-from resume_submission.lambda_function import return_output, \
-    create_final_output, create_max_min_list, create_relationship_dict, convert_lol_final_result_string, \
-    convert_string_to_list
+from resume_submission.lambda_function import solve_puzzle, \
+    create_final_output_list, create_sorted_list, create_relationship, solved_puzzle_string, \
+    extract_puzzle_details
 
 '''
 Few ways that would help solve problem:
@@ -38,7 +38,7 @@ D>>>='''
     ],
 )
 def test_return_output(input, expected_result):
-    assert return_output(input=input) == expected_result
+    assert solve_puzzle(input=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -60,7 +60,7 @@ def test_return_output(input, expected_result):
     ],
 )
 def test_create_relationship_dict(input, expected_result):
-    assert create_relationship_dict(input_variables=input) == expected_result
+    assert create_relationship(input=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -81,8 +81,8 @@ def test_create_relationship_dict(input, expected_result):
         ),
     ],
 )
-def test_create_relationship_dict(input, expected_result):
-    assert create_relationship_dict(input_variables=input) == expected_result
+def test_create_relationship(input, expected_result):
+    assert create_relationship(input=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -123,8 +123,8 @@ def test_create_relationship_dict(input, expected_result):
         ),
     ],
 )
-def test_create_relationship_dict(input, expected_result):
-    assert create_max_min_list(relationship_dict=input) == expected_result
+def test_create_max_min_list(input, expected_result):
+    assert create_sorted_list(relationship=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -175,7 +175,7 @@ def test_create_relationship_dict(input, expected_result):
     ],
 )
 def test_create_final_output(input, expected_result):
-    assert create_final_output(input_list=input) == expected_result
+    assert create_final_output_list(input=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -230,7 +230,7 @@ C<<='''
     ],
 )
 def test_convert_lol_final_result(input, expected_result):
-    assert convert_lol_final_result_string(lol=input) == expected_result
+    assert solved_puzzle_string(input=input) == expected_result
 
 
 @pytest.mark.parametrize(
@@ -248,4 +248,4 @@ D-<--''',
     ],
 )
 def test_return_output(input, expected_result):
-    assert convert_string_to_list(input=input) == expected_result
+    assert extract_puzzle_details(input=input) == expected_result

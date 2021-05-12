@@ -5,7 +5,7 @@ This repo contains code that will be used for resume submission exercise
 This code is deployed on AWS Lambda which provides answers to specific questions
 
 ## Tests
-Tests are written in pytest and are in the tests folder
+Tests are written in pytest and are in the tests folder. This is the documentation for what the code does.
 
 ## Design
 
@@ -16,7 +16,7 @@ Few ways that would help solve problem:
 Fill in the blanks approach
 Use BST
 
+Please refer to the tests on conversion of the input to output
 
-
-Time Complexity: TBD
-Space Complexity: TBD
+Time Complexity: O(n^2)
+Space Complexity: O(n^2)
