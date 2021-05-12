@@ -20,3 +20,8 @@ Please refer to the tests on conversion of the input to output
 
 Time Complexity: O(n^2)
 Space Complexity: O(n^2)
+
+
+## CI
+
+The ci folder has a shell script to upload the zip file with one command `sh lambda_update.sh`. You will have to update the credentials file with your aws credentials
