@@ -29,16 +29,6 @@ def lambda_handler(event, context):
     }
 
 
-def solved_puzzle_string(input: List[List]) -> str:
-    final_output_string = ""
-    for i in range(len(input)):
-        final_output_string += "".join(input[i])
-        if i < len(input) - 1:
-            final_output_string += "\n"
-
-    return final_output_string
-
-
 def solve_puzzle(input: str) -> str:
     puzzle_details_list = extract_puzzle_details(input=input)
 
@@ -135,3 +125,16 @@ def create_final_output_list(input: List) -> List[List]:
         full_list.append(elements_list[:])
         elements_list.clear()
     return (sorted(full_list))
+
+def solved_puzzle_string(input: List[List]) -> str:
+    '''
+           TC: O(n^2)
+           SC: O(n)
+       '''
+    final_output_string = ""
+    for i in range(len(input)):
+        final_output_string += "".join(input[i])
+        if i < len(input) - 1:
+            final_output_string += "\n"
+
+    return final_output_string
