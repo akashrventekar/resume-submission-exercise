@@ -1,42 +1,31 @@
 from collections import defaultdict
 
 
+
 def lambda_handler(event, context):
-    answer = ""
-    print(event['queryStringParameters']['d'])
-    if str(event['queryStringParameters'][
-               'd']) == "Please provide a URL where we can download the source code of your resume submission web service.":
-        answer = "https://github.com/akashrventekar/resume-submission-exercise"
-    if str(event['queryStringParameters']['d']) == "What is your full name?":
-        answer = "Akash Rajendra Ventekar"
-    if str(event['queryStringParameters']['d']) == "Please return OK so that I know your service works.":
-        answer = "OK"
-    if str(event['queryStringParameters']['d']) == "What is your email address?":
-        answer = "akashrventekar@gmail.com"
-    if str(event['queryStringParameters']['d']) == "Please provide a phone number we can use to reach you.":
-        answer = "(256) 468-9279"
-    if str(event['queryStringParameters']['d']) == "Which position are you applying for?":
-        answer = "Senior Software Engineer, Exchange"
-    if str(event['queryStringParameters']['d']) == "How many years of software development experience do you have?":
-        answer = "6+"
-    if str(event['queryStringParameters']['d']) == "How did you hear about this position?":
-        answer = "LinkedIn"
-    if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
-        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA"
-    if str(event['queryStringParameters']['d']) == "Please list your relevant university degree(s).":
-        answer = "Bachelors Of Engineering - Computer Science and Engineering | Masters of Science - Computer Science | Currently pursuing MBA"
-    if str(event['queryStringParameters'][
-               'd']) == "Please provide a URL where we can download your resume and cover letter.":
-        answer = "TBD"
-    if str(event['queryStringParameters']['d']) == "Can you provide proof of eligibility to work in the US?":
-        answer = "Yes"
+    answers = {
+        "Please provide a URL where we can download the source code of your resume submission web service.": "https://github.com/akashrventekar/resume-submission-exercise",
+        "What is your full name?": "Akash Rajendra Ventekar",
+        "Please return OK so that I know your service works.": "OK",
+        "What is your email address?": "akashrventekar@gmail.com",
+        "Please provide a phone number we can use to reach you.": "(256) 468-9279",
+        "Which position are you applying for?": "Senior Software Engineer, Exchange",
+        "How many years of software development experience do you have?": "6+",
+        "How did you hear about this position?": "LinkedIn",
+        "Please list your relevant university degree(s).": "Bachelors Of Engineering - Computer Science and Engineering | Masters of Scienc - Computer Science | Currently pursuing MBA",
+        "Please provide a URL where we can download your resume and cover letter.": '<a href="https://akash-resume.s3.amazonaws.com/Akash+R+Ventekar.pdf<">link text</a>',
+        "Can you provide proof of eligibility to work in the US?": "Yes",
+    }
+
     if "Please solve this puzzle" in str(event['queryStringParameters']['d']):
-        answer = return_output(input=str(event['queryStringParameters']['d']))
+        answers[str(event['queryStringParameters'][
+                        'd'])] = return_output(input=str(event['queryStringParameters']['d']))
     return {
         "isBase64Encoded": False,
         "statusCode": 200,
         "headers": {"Content-Type": "text/plain", },
-        "body": answer
+        "body": answers[str(event['queryStringParameters'][
+               'd'])]
     }
 
 
