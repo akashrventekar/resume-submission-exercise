@@ -13,12 +13,11 @@ I have used API Gateway backed by Lambda (Integration request: Lambda proxy as t
 
 My initial thought process for the puzzle:
 Few ways that would help solve problem:
-Fill in the blanks approach
-Use BST
+Fill in the blanks approach \
+Use BST \
+Eventually used a systematic way to convert input into output through set of transformations using python functions. Please refer to the tests on conversion of the input to output
 
-Please refer to the tests on conversion of the input to output
-
-Time Complexity: O(n^2)
+Time Complexity: O(n^2) \
 Space Complexity: O(n^2)
 
 
